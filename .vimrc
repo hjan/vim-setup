@@ -5,6 +5,7 @@ set nocompatible
 set title
 set ttyfast
 set ruler
+set laststatus=2
 
 " Load pathogen which is used for easy plugin handling
 execute pathogen#infect()
@@ -78,19 +79,20 @@ set pastetoggle=<F2>
 
 
 " PLUGIN CONFIGURATION
+
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 " autocmd vimenter * if !argc() | NERDTree | endif
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_compact=1
 let g:tagbar_iconchars = ['▸', '▾']
-autocmd vimenter * nested TagbarOpen
+" autocmd vimenter * nested TagbarOpen
 
 " DONT DO THAT AT HOME :x (this needs definitely a better approach! ;x)
 " This is a naive function to stack NERDTree and tagbar on the left side
@@ -108,5 +110,5 @@ function! JiggleWindows()
     wincmd l
 endfunction
 " Call the jiggle function when vim starts
-autocmd vimenter * call JiggleWindows()
+" autocmd vimenter * call JiggleWindows()
 
