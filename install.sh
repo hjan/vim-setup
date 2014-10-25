@@ -155,7 +155,6 @@ case "$ARG" in
     ;;
     check)
         upd_for_plugins=$(check_plugins)
-        echo $upd_for_plugins
         if [ check ] && [ $upd_for_plugins = 0 ]; then
             echo "Your setup is up-to-date."
         else
