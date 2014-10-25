@@ -51,18 +51,20 @@ function update()
 # running at the moment.
 function install()
 {
-    echo "${bold}Setting up Symlinks..."
-    ln -sf ${DIR}/.vim ~/.vim
+    echo "${bold}Setting up Symlinks...${normal}"
+    ln -sf -t ~/ ${DIR}/.vim
     ln -sf ${DIR}/.vimrc ~/.vimrc
     
-    echo "${bold}Creating temp and backup directories..."
+    echo "${bold}Creating temp and backup directories...${normal}"
     mkdir -p ${DIR}/.vim/tmp
     mkdir -p ${DIR}/.vim/backup
     
     # Install all plugins found in 'plugins'
-    echo "${bold}Installing plugins..."
+    echo "${bold}Installing plugins...${normal}"
 
     REPOS=$(cat plugins)
+    # Make sure we've got the bundle directory
+    mkdir -p ${DIR}/.vim/bundle
     cd ${DIR}/.vim/bundle/
     INSTALLED_PLUGINS=$(ls -A)
     for repo in $REPOS; do
@@ -143,7 +145,7 @@ case "$ARG" in
         if [ check ] && [ $upd_for_plugins = 0 ]; then
             echo "Your setup is up-to-date."
         else
-            echo "${bold}Updating...{normal}"
+            echo "${bold}Updating...${normal}"
             update
             update_plugins
         fi
