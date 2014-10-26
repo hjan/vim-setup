@@ -18,7 +18,7 @@ function check()
     LOCAL=$(git rev-parse @)
     REMOTE=$(git rev-parse @{u})
     BASE=$(git merge-base @ @{u})
-  
+    
     if [ $LOCAL = $REMOTE ]; then
         return 1
     elif [ $LOCAL = $BASE ]; then
@@ -158,7 +158,6 @@ case "$ARG" in
     ;;
     check)
         upd_for_plugins=$(check_plugins)
-        echo $upd_for_plugins
         if check && [ "$upd_for_plugins" = "0" ]; then
             echo "Your setup is up-to-date."
         else
