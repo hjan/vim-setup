@@ -12,10 +12,13 @@ normal=`tput sgr0`
 # This will basically just check whether an update is available or not
 function check()
 {
+    # Bring remote refs up-to-date before we do anything
+    git remote update > /dev/null 2>&1
+
     LOCAL=$(git rev-parse @)
     REMOTE=$(git rev-parse @{u})
     BASE=$(git merge-base @ @{u})
-    
+  
     if [ $LOCAL = $REMOTE ]; then
         return 1
     elif [ $LOCAL = $BASE ]; then
@@ -30,7 +33,7 @@ function check_plugins()
     cd ${DIR}/.vim/bundle
     for plugin in `ls -A`; do
         cd $plugin
-        if [ ! check ]; then
+        if ! check; then
             ((AMOUNT++))
         fi
         cd - > /dev/null 2>&1
@@ -142,7 +145,7 @@ EOF
 case "$ARG" in
     update)
         upd_for_plugins=$(check_plugins)
-        if [ check ] && [ $upd_for_plugins = 0 ]; then
+        if check && [ "$upd_for_plugins" = "0" ]; then
             echo "Your setup is up-to-date."
         else
             echo "${bold}Updating...${normal}"
@@ -156,7 +159,7 @@ case "$ARG" in
     check)
         upd_for_plugins=$(check_plugins)
         echo $upd_for_plugins
-        if [ check ] && [ $upd_for_plugins = 0 ]; then
+        if check && [ "$upd_for_plugins" = "0" ]; then
             echo "Your setup is up-to-date."
         else
             echo "There are updates available. Use './install.sh update' to update."
