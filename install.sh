@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# TODO: Remove several redundant checks (we could be a bit more clever about checking for updates...)
 
 ARG=$1
 # Set the directory the script is stored in to make the script callable from anywhere
@@ -10,7 +10,7 @@ bold=`tput bold`
 normal=`tput sgr0`
 
 # This will basically just check whether an update is available or not
-function check()
+function has_update()
 {
     # Bring remote refs up-to-date before we do anything
     git remote update > /dev/null 2>&1
@@ -27,13 +27,14 @@ function check()
 }
 
 # Check if any plugins can be updated and return the amount
+# TODO: This should use the 'plugin' file rather than ls -A (see update_plugins)
 function check_plugins()
 {
     AMOUNT=0
     cd ${DIR}/.vim/bundle
     for plugin in `ls -A`; do
         cd $plugin
-        if ! check; then
+        if has_update; then
             ((AMOUNT++))
         fi
         cd - > /dev/null 2>&1
@@ -46,7 +47,7 @@ function check_plugins()
 # TODO: meh
 function update()
 {
-    git pull https://github.com/hjan/vim-setup.git
+    git pull
 }
 
 # This will set up everything necessarry to make vim use all of our
@@ -105,7 +106,7 @@ function update_plugins()
             cd $PLUGIN
             if [ -e .git ]; then
                 echo "${bold}Check plugin:${normal} ${PLUGIN}"
-                if [ check ]; then
+                if ! has_update; then
                     echo "${PLUGIN} ${bold}is up-to-date."
                 else
                     echo "${bold}Updating${normal} ${PLUGIN}..."
@@ -144,11 +145,12 @@ EOF
 
 case "$ARG" in
     update)
+        echo "${bold}Checking for updates...${normal}"
         upd_for_plugins=$(check_plugins)
-        if check && [ "$upd_for_plugins" = "0" ]; then
+        if ! has_update && [ "$upd_for_plugins" = "0" ]; then
             echo "Your setup is up-to-date."
         else
-            echo "${bold}Updating...${normal}"
+            echo "${bold}Updates available - Updating...${normal}"
             update
             update_plugins
         fi
@@ -157,11 +159,12 @@ case "$ARG" in
         update_plugins
     ;;
     check)
+        echo "${bold}Checking for updates...${normal}"
         upd_for_plugins=$(check_plugins)
-        if check && [ "$upd_for_plugins" = "0" ]; then
+        if ! has_update && [ "$upd_for_plugins" = "0" ]; then
             echo "Your setup is up-to-date."
         else
-            echo "There are updates available. Use './install.sh update' to update."
+            echo "There are updates available. Use './install.sh update' to start the updating process."
         fi
     ;;
     help)
