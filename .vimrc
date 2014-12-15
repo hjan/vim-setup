@@ -28,6 +28,10 @@ set nu
 " Highlight currentline
 set cursorline
 
+" Highlight margin
+execute "set colorcolumn=" . join(range(81,335), ',')
+autocmd bufenter * highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
 " Allow 256 color themes
 set term=screen-256color
 set t_Co=256
