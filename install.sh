@@ -15,9 +15,9 @@ function has_update()
     # Bring remote refs up-to-date before we do anything
     git remote update > /dev/null 2>&1
 
-    LOCAL=$(git rev-parse @)
+    LOCAL=$(git rev-parse HEAD)
     REMOTE=$(git rev-parse @{u})
-    BASE=$(git merge-base @ @{u})
+    BASE=$(git merge-base HEAD @{u})
     
     if [ $LOCAL = $REMOTE ]; then
         return 1
