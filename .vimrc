@@ -12,12 +12,13 @@ execute pathogen#infect()
 
 " Proper backup and tmp dirs are prefered
 set backup
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
+set backupdir=~/.vim/backup//
+set directory=~/.vim/tmp//
 
 " Enable autosave and undofiles
 au FocusLost * :wa
 set undofile
+set undodir=~/.vim/undo//
 
 " Don't wrap lines at all
 set nowrap

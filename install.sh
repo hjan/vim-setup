@@ -59,9 +59,10 @@ function install()
     ln -sf -t ~/ ${DIR}/.vim
     ln -sf ${DIR}/.vimrc ~/.vimrc
     
-    echo "${bold}Creating temp and backup directories...${normal}"
+    echo "${bold}Creating tmp, backup and undo directories...${normal}"
     mkdir -p ${DIR}/.vim/tmp
     mkdir -p ${DIR}/.vim/backup
+    mkdir -p ${DIR}/.vim/undo
     
     # Install all plugins found in 'plugins'
     echo "${bold}Installing plugins...${normal}"
