@@ -14,9 +14,12 @@ During the installation, the script will create sub-directories for temp-, backu
 It will then create symlinks for `~/.vim/` and `~/.vimrc` to point to the installation directory.
 
 ## Plugins
-Plugins are usually installed through plugin managers for vim. As of now, the script only checks for
-plugin-updates by checking what plugins are installed in the `~/.vim/bundle` directory and uses the
-`plugin`-file to figure out the sources.
+Plugins are usually installed through plugin managers for vim. As of now, the script only looks for
+plugin-updates by checking what plugins are installed in the `~/.vim/bundle` directory.
+
+The `plugin`-file contains the sources of the currently installed plugins, but needs to be updated
+manually at the moment. The file is then used to install plugins during the initial installation.
+A plugin-manager integration may be added in the future.
 
 
 ## Usage
