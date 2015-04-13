@@ -17,8 +17,11 @@ set directory=~/.vim/tmp//
 
 " Enable autosave and undofiles
 au FocusLost * :wa
-set undofile
-set undodir=~/.vim/undo//
+
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.vim/undo//
+endif
 
 " Don't wrap lines at all
 set nowrap
@@ -30,8 +33,10 @@ set nu
 set cursorline
 
 " Highlight margin
-execute "set colorcolumn=" . join(range(81,335), ',')
-autocmd bufenter * highlight ColorColumn ctermbg=235 guibg=#2c2d27
+if exists('+colorcolumn')
+    execute "set colorcolumn=" . join(range(81,335), ',')
+    autocmd bufenter * highlight ColorColumn ctermbg=235 guibg=#2c2d27
+endif
 
 " Allow 256 color themes
 set term=screen-256color

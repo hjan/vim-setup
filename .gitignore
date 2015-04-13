@@ -6,3 +6,4 @@
 .vim/bundle/*
 .vim/tmp
 .vim/backup
+.vim/undo
