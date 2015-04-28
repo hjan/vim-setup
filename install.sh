@@ -91,7 +91,7 @@ function install()
     done
     cd - > /dev/null 2>&1
     touch .installed
-    echo "${bold}Done."
+    echo "${bold}Done.${normal}"
 }
 
 # This will update all installed plugins.
@@ -108,7 +108,7 @@ function update_plugins()
             if [ -e .git ]; then
                 echo "${bold}Check plugin:${normal} ${PLUGIN}"
                 if ! has_update; then
-                    echo "${PLUGIN} ${bold}is up-to-date."
+                    echo "${PLUGIN} ${bold}is up-to-date.${normal}"
                 else
                     echo "${bold}Updating${normal} ${PLUGIN}..."
                     git pull
