@@ -51,6 +51,8 @@ colorscheme xoria256
 set autoindent
 filetype plugin indent on
 
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
 " Set some tab stuff here
 set shiftwidth=4
 set softtabstop=4
