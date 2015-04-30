@@ -79,8 +79,11 @@ set smartcase " lowercase search = case-insensitve
 " Use w!! if sudo was forgotton
 cmap w!! w !sudo tee % >/dev/null
 
-" Remap ; to :
-nnoremap ; :
+" Disable arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Reset search highlights
 let mapleader=','
