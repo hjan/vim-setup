@@ -6,8 +6,8 @@ You can easily install your familiar vim configuration on new machines or after 
 your OS.
 
 ## Installation
-Just clone or download this repository and run `./install.sh`. You may adjust the permission bit
-for execution beforehand: `chmod u+x install.sh`
+Just clone or download this repository and run `./manage.sh install`. You may adjust the permission bit
+for execution beforehand: `chmod u+x manage.sh`
 
 Wherever you put this script, everything vim related will be stored within that directory.
 During the installation, the script will create sub-directories for temp-, backup- and undo-files.
@@ -24,9 +24,10 @@ A plugin-manager integration may be added in the future.
 
 
 ## Usage
-`./install.sh [<option>]`
+`./manage.sh <option>`
 
 ### Options
+* `install` - Do the initial installation
 * `check` - Check whether updates are available
 * `update`- Update everything (includes update-plugins)
 * `update-plugins` - Updates all plugins and installs new ones found in the 'plugins' file
