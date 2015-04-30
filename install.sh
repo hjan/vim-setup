@@ -135,8 +135,10 @@ function update_plugins()
 function usage()
 {
 cat <<EOF
-Usage: ./install.sh [<option>] - Installs and sets up everything necessarry to make vim use the repo configuration
+This script helps to manage and maintain the vim configuration
+Usage: ./manage.sh <option> 
 Options:
+    install         - Do the initial installation
     check           - Check whether updates are available
     update          - Update everything (includes update-plugins)
     update-plugins  - Updates all plugins and installs new ones found in the 'plugins' file
@@ -145,6 +147,13 @@ EOF
 }
 
 case "$ARG" in
+    install)
+        if [ ! -e ${DIR}/.installed ]; then
+            install
+        else
+            echo "vim-setup allready installed. Check for updates with './manage.sh check'"
+        fi
+    ;;
     update)
         echo "${bold}Checking for updates...${normal}"
         upd_for_plugins=$(check_plugins)
@@ -165,18 +174,11 @@ case "$ARG" in
         if ! has_update && [ "$upd_for_plugins" = "0" ]; then
             echo "Your setup is up-to-date."
         else
-            echo "There are updates available. Use './install.sh update' to start the updating process."
+            echo "There are updates available. Use './manage.sh update' to start the updating process."
         fi
     ;;
-    help)
+    *|help)
         usage
-    ;;
-    *) 
-        if [ ! -e ${DIR}/.installed ]; then
-            install
-        else
-            echo "vim-setup allready installed. Check for updates with './install.sh check'"
-        fi
     ;;
 esac
 
