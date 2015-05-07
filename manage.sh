@@ -18,7 +18,7 @@ function has_update()
     LOCAL=$(git rev-parse HEAD)
     REMOTE=$(git rev-parse @{u})
     BASE=$(git merge-base HEAD @{u})
-    
+
     if [ $LOCAL = $REMOTE ]; then
         return 1
     elif [ $LOCAL = $BASE ]; then
@@ -58,12 +58,12 @@ function install()
     echo "${bold}Setting up Symlinks...${normal}"
     ln -sf -t ~/ ${DIR}/.vim
     ln -sf ${DIR}/.vimrc ~/.vimrc
-    
+
     echo "${bold}Creating tmp, backup and undo directories...${normal}"
     mkdir -p ${DIR}/.vim/tmp
     mkdir -p ${DIR}/.vim/backup
     mkdir -p ${DIR}/.vim/undo
-    
+
     # Install all plugins found in 'plugins'
     echo "${bold}Installing plugins...${normal}"
 
@@ -73,12 +73,12 @@ function install()
     cd ${DIR}/.vim/bundle/
     INSTALLED_PLUGINS=$(ls -A)
     for repo in $REPOS; do
-        # Let's check if we've got the plugin installed already 
+        # Let's check if we've got the plugin installed already
         # (even though it shouldn't be the case since we're doing a fresh install - so..yea)
         found=0
         for plugin in $INSTALLED_PLUGINS; do
             if [[ $repo =~ /${plugin}.git ]]; then
-               found=1 
+               found=1
                break
             fi
         done
@@ -136,7 +136,7 @@ function usage()
 {
 cat <<EOF
 This script helps to manage and maintain the vim configuration
-Usage: ./manage.sh <option> 
+Usage: ./manage.sh <option>
 Options:
     install         - Do the initial installation
     check           - Check whether updates are available
