@@ -3,3 +3,4 @@ git://github.com/tpope/vim-sensible.git
 https://github.com/scrooloose/syntastic.git
 https://github.com/Lokaltog/vim-powerline.git
 https://github.com/bronson/vim-trailing-whitespace.git
+https://github.com/Townk/vim-autoclose.git
