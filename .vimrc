@@ -74,6 +74,10 @@ set showmatch
 set hlsearch
 set smartcase " lowercase search = case-insensitve
 
+" Enhance autocompletion a little
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " SOME MAPPING
 " Use w!! if sudo was forgotton
