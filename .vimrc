@@ -79,6 +79,15 @@ set completeopt=longest,menuone
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
+" Bind completion menu to <C-Space>
+if ("gui_running")
+    " In case we're using gvim
+    inoremap <C-Space> <C-n>
+else
+    " Terminals translate Ctrl-Space to Nul
+    inoremap <Nul> <C-n>
+endif
+
 " SOME MAPPING
 " Use w!! if sudo was forgotton
 cmap w!! w !sudo tee % >/dev/null
