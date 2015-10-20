@@ -40,6 +40,10 @@ if exists('+colorcolumn')
     autocmd bufenter * highlight ColorColumn ctermbg=235 guibg=#2c2d27
 endif
 
+set list listchars=tab:▸\ 
+autocmd bufenter * highlight NonText ctermfg=242
+autocmd bufenter * highlight SpecialKey ctermfg=242
+
 " Allow 256 color themes
 set term=screen-256color
 set t_Co=256
