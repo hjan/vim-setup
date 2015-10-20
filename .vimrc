@@ -28,6 +28,7 @@ set nowrap
 
 " Turn on line numbers
 set nu
+set rnu
 
 " Highlight currentline
 set cursorline
