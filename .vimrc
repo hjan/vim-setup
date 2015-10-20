@@ -32,6 +32,7 @@ set rnu
 
 " Highlight currentline
 set cursorline
+autocmd bufenter * highlight CursorLine ctermbg=235 guibg=#2c2d27
 
 " Highlight margin
 if exists('+colorcolumn')
