@@ -111,6 +111,19 @@ nmap <Leader><space> :noh<CR>
 " Easy way to toggle paste mode within insert mode
 set pastetoggle=<F2>
 
+" Split settings and mappings
+set splitbelow
+set splitright
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+map <Tab> <C-W>w
+map <Bar> :vnew<CR>
+map - :new<CR>
+
 
 " PLUGIN CONFIGURATION
 
