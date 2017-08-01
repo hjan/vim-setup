@@ -44,6 +44,12 @@ set list listchars=tab:▸\
 autocmd bufenter * highlight NonText ctermfg=242
 autocmd bufenter * highlight SpecialKey ctermfg=242
 
+let g:indentLine_enabled = 1
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_color_term = 242
+let g:indentLine_char = '.'
+let g:indentLine_leadingSpaceChar = '.'
+
 " Allow 256 color themes
 set term=screen-256color
 set t_Co=256
